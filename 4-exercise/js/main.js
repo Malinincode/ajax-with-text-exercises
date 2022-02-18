@@ -9,3 +9,22 @@
  * 
  *
  */
+ let input = document.getElementById('input');
+ let fetchBtn = document.getElementById('fetchBtn');
+ let tableBody = document.querySelector('#table tbody');
+ 
+ fetchBtn.addEventListener('click', function() {
+    let url= ('http://codexplained.se/lorem_text_random.php?numberOfWords=' + input.value) 
+
+    fetch (url)
+    .then(response => response.text())      
+    .then(data => {
+       tableBody.innerHTML +=  `
+         <tr>
+				<td>${input.value}</td>
+				<td>${data}</td>
+		   </tr>
+       `
+      }) 
+    .catch((error) => {console.log (error);})   
+ })
