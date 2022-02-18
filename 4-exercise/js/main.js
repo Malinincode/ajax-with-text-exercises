@@ -12,9 +12,13 @@
  let input = document.getElementById('input');
  let fetchBtn = document.getElementById('fetchBtn');
  let tableBody = document.querySelector('#table tbody');
+ let loading = document.getElementById('loading');
  
  fetchBtn.addEventListener('click', function() {
-    let url= ('http://codexplained.se/lorem_text_random.php?numberOfWords=' + input.value) 
+    let url= ('http://codexplained.se/lorem_text_slow.php?numberOfWords=' + input.value) 
+    let img = document.createElement("img")
+    img.src = "img/loading.gif"
+    loading.append(img)
 
     fetch (url)
     .then(response => response.text())      
@@ -25,6 +29,9 @@
 				<td>${data}</td>
 		   </tr>
        `
+       img.remove()
       }) 
+   
     .catch((error) => {console.log (error);})   
+   
  })
