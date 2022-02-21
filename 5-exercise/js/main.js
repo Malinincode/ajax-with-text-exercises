@@ -8,3 +8,14 @@
  * Använd er av den inbyggda sträng-funktionen .split()
  */
 	
+ let fetchBtn = document.getElementById('fetchBtn');
+ let list = document.getElementById('list');
+ let textReturn = document.getElementById('textReturn');
+ 
+ fetchBtn.addEventListener('click', function() {
+    fetch('http://codexplained.se/lorem_comma_text.php') 
+    .then(response => response.text()) 
+    .then(textReturn => textReturn.split(" "))
+    .then(data => {list.innerHTML = `<li> ${data} </li>`}) 
+    .catch((error) => {console.log (error);})     
+ })
