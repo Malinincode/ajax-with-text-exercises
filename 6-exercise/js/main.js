@@ -28,3 +28,15 @@
  * 
  */
 	
+let buttonPrevious = document.getElementById('previous');
+let buttonNext = document.getElementById('next');
+
+/* Retur knapp Previous */
+
+fetchBtn.addEventListener('click', function(previous) {
+    fetch('http://codexplained.se/animals.php?animal') 
+    if(response.status === 0 < 4) {
+        // do something
+      };   
+ })
+
