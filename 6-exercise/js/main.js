@@ -28,15 +28,57 @@
  * 
  */
 	
-let buttonPrevious = document.getElementById('previous');
-let buttonNext = document.getElementById('next');
+let number = 1;
 
-/* Retur knapp Previous */
+document.getElementById("preBtn").addEventListener("click", function() {
 
-fetchBtn.addEventListener('click', function(previous) {
-    fetch('http://codexplained.se/animals.php?animal') 
-    if(response.status === 0 < 4) {
-        // do something
-      };   
- })
+  if(number >= 0) {
+      number--;
+      if(number == -1) {
+        number = 4;
+      }
+      fetch(`http://codexplained.se/animals.php?animal=${number}`)
+      .then(response => response.text())
 
+      .then(data => {
+          let splitData = data.split("*");
+
+          let content = document.getElementById("content");
+          content.innerHTML = `
+          <h1>${splitData[0]}</h1>
+          <i>${splitData[1]}</i>
+          <p>${splitData[2]}</p>
+          <img src="${splitData[3]}">
+          `;
+
+      })
+
+  }
+
+})
+
+document.getElementById("nextBtn").addEventListener("click", function() {
+
+  if(number <= 4) {
+      number++;
+      if(number == 5) {
+        number = 0;
+      }
+      fetch(`http://codexplained.se/animals.php?animal=${number}`)
+      .then(response => response.text())
+
+      .then(data => {
+          let splitData = data.split("*");
+          let content = document.getElementById("content");
+          content.innerHTML = `
+          <h1>${splitData[0]}</h1>
+          <i>${splitData[1]}</i>
+          <p>${splitData[2]}</p>
+          <img src="${splitData[3]}">
+          `;
+
+      })
+
+  }
+
+})
